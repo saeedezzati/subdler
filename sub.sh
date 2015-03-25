@@ -3,17 +3,19 @@ shopt -s nocasematch
 if [[ ! $1 ]]
 then
   echo -e " >> USAGE: sub.sh directory\n"
-  #exit
+  exit
 fi
 
-find ${1:-"/Users/saeed.ezzati/zz"} \( -name "*.mkv" -or -name "*.mp4" \) > ${1:-"/Users/saeed.ezzati/zz"}/movieList.txt
+find ${1:-"DefaultDir"} \( -name "*.mkv" -or -name "*.mp4" \) > ${1:-"DefaultDir"}/movieList.txt
 
-minimumsize=1000
+#min movie size: 100Mb
+minimumsize=1000000 
 
-exec 3< ${1:-"/Users/saeed.ezzati/zz"}/movieList.txt
+exec 3< ${1:-"DefaultDir"}/movieList.txt
 while read -u 3 line 
 do
   actualsize=$(stat "$line" | cut -f 9 -d ' ')
+  # Don't download subs for filename including word "sample"
   if [[ ( $actualsize -ge $minimumsize ) && !( "$line" =~ "sample" ) ]]; then
     movieDir="$(dirname "$line")"
     movieName="$(basename "$line")"
