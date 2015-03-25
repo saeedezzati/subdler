@@ -5,7 +5,7 @@ then
   echo -e " >> USAGE: sub.sh directory\n"
   exit
 fi
-
+DefaultDir=""
 find ${1:-"DefaultDir"} \( -name "*.mkv" -or -name "*.mp4" \) > ${1:-"DefaultDir"}/movieList.txt
 
 #min movie size: 100Mb

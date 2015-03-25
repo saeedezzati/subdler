@@ -10,4 +10,4 @@ It will walk through all the sub-directories, download the subtitles, and save t
 It won't download subs for filename including word "sample", or files smaller than 100Mb.
 
 
-MovieDir is optional.
+MovieDir is optional, you can set a Default Directory by setting "DefaultDir" in the code.
